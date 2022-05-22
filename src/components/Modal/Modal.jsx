@@ -2,10 +2,12 @@ import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './Modal.css';
+import ReactDOM from 'react-dom';
+
 
 const modalRoot = document.querySelector('#modal-root');
 
- class Modal extends Component {
+class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
@@ -31,7 +33,7 @@ const modalRoot = document.querySelector('#modal-root');
   };
 
   render() {
-    return createPortal(
+    return ReactDOM.createPortal (
       <div className="overlay" onClick={this.handleOverlayClick}>
         <div>
           <img src={this.props.image} alt={this.props.tags} className="modal" />
@@ -40,5 +42,5 @@ const modalRoot = document.querySelector('#modal-root');
       modalRoot
     );
   }
-}
-export default Modal;
+};
+export default  Modal;

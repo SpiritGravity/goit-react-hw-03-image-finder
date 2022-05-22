@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SeachBar.css';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   state = {
     searchImages: '',
   };
@@ -52,3 +52,4 @@ export default class SearchBar extends Component {
     );
   }
 }
+export default SearchBar;
