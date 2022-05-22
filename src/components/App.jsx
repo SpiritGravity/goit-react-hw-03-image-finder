@@ -109,8 +109,11 @@ export class App extends Component {
         <TailSpin ariaLabel="loading-indicator" color="#3f51b5" />
       )}
 
-      {showModal && <Modal image={largeImage} onClose={this.toggleModal} />}
-    </div>    );
+      {showModal && 
+      
+      <Modal image={largeImage} onClose={this.toggleModal} />}
+    </div>    
+    );
   }
 }
 
