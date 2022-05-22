@@ -3,7 +3,9 @@ import styles from './App.css';
 import SearchBar from './SearchBar/SearchBar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
+import Modal from './Modal/Modal';
 import API from '../services/Api';
+import { TailSpin } from 'react-loader-spinner';
 
 
 export class App extends Component {
@@ -14,7 +16,7 @@ export class App extends Component {
     gallery: [],
     largeImage: '',
     showModal: false,
-    currentHitsPerPages: null,
+    currentHitsPerPage: null,
   };
   componentDidUpdate(_, prevState) {
     const { searchImages, page } = this.state;
@@ -59,24 +61,56 @@ export class App extends Component {
       currentHitsPerPage: null,
     });
   };
+  handleLoadMore = () => {
+    this.setState(({ page }) => {
+      return { page: page + 1 };
+    });
+  };
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
+
+  onOpenImage = largeImage => {
+    this.setState({ largeImage: largeImage });
+    this.toggleModal();
+  };
 
   render () {
     const {
       gallery,
       isLoading,
-      currentHitsPerPages,
+      currentHitsPerPage,
       error,
       showModal,
       largeImage,
     } = this.state;
 
     return(
-<div className="app">
-<SearchBar onSubmit={this.handleFormSubmit} />
+      <div className="app">
+      <SearchBar onSubmit={this.handleFormSubmit} />
 
-</div>
-    )
+      {gallery.length > 0 && !error && (
+        <>
+          <ImageGallery gallery={gallery} onModalShow={this.onOpenImage} />
+          {currentHitsPerPage && currentHitsPerPage < 12 && (
+            <p className="message">Конец результатов поиска</p>
+          )}
+        </>
+      )}
 
+      {currentHitsPerPage === 12 && !isLoading && (
+        <Button onClickBtn={this.handleLoadMore} />
+      )}
+
+      {isLoading && (
+        <TailSpin ariaLabel="loading-indicator" color="#3f51b5" />
+      )}
+
+      {showModal && <Modal image={largeImage} onClose={this.toggleModal} />}
+    </div>    );
   }
 }
 
