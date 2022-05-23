@@ -5,8 +5,7 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 import API from '../services/Api';
-import { TailSpin } from 'react-loader-spinner';
-
+import { ThreeDots } from 'react-loader-spinner';
 
 export class App extends Component {
   state = {
@@ -106,7 +105,7 @@ export class App extends Component {
       )}
 
       {isLoading && (
-        <TailSpin ariaLabel="loading-indicator" color="#3f51b5" />
+        <ThreeDots color="#00BFFF" height={80} width={80} />
       )}
 
       {showModal && 
