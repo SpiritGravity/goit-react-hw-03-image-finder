@@ -30,8 +30,8 @@ class Modal extends Component {
   render() {
     return (
       <div className="overlay" onClick={this.handleOverlayClick}>
-        <div>
-          <img src={this.props.image} alt={this.props.tags} className="modal" />
+        <div className="modal">
+          <img src={this.props.image} alt={this.props.tags} className="image"/>
         </div>
       </div>
     );

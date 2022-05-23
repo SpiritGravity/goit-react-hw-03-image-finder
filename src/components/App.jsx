@@ -4,8 +4,8 @@ import SearchBar from './SearchBar/SearchBar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
+import Loader from './Loader/Loader';
 import API from '../services/Api';
-import { ThreeDots } from 'react-loader-spinner';
 
 export class App extends Component {
   state = {
@@ -105,7 +105,7 @@ export class App extends Component {
       )}
 
       {isLoading && (
-        <ThreeDots color="#00BFFF" height={80} width={80} />
+        <Loader />
       )}
 
       {showModal && 
