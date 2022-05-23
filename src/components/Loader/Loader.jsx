@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { ThreeDots } from 'react-loader-spinner';
 import { Component } from 'react';
+import loader from './Loader.css';
 
-function Loader ({}) {
+const Loader = () => {
     return ( 
         <div className="loader">
-        <ThreeDots color="#00BFFF" height={80} width={80} />
+        <ThreeDots color="#3f51b5" height={80} width={80} />
     </div>
     )
 }
